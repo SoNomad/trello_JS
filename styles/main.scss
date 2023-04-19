@@ -29,12 +29,27 @@
       margin: 0 15px;
       padding: 10px;
       transition: 0.3s all ease;
-      .title {
-        padding: 5px;
-        font-size: 16px;
-        color: white;
-        &:focus {
-          outline: 1px solid rgba(168, 168, 168, 0.45);
+      .header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        position: relative;
+
+        width: 100%;
+        .removeBtn {
+          position: absolute;
+          right: 0;
+          top: -5px;
+          cursor: pointer;
+          color: red;
+        }
+        .title {
+          padding: 5px;
+          font-size: 16px;
+          color: white;
+          &:focus {
+            outline: 1px solid rgba(168, 168, 168, 0.45);
+          }
         }
       }
       .list {

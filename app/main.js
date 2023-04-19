@@ -1,14 +1,7 @@
 const lists = document.querySelectorAll('.list');
 const button = document.querySelector('.button');
 const boards = document.querySelectorAll('.boards__item');
-
-function removeBoard() {
-  boards.forEach((board) => {
-    board.addEventListener('dblclick', () => {
-      board.remove();
-    });
-  });
-}
+const removeBtn = document.querySelectorAll('.removeBtn');
 
 function addTask() {
   const btn = document.querySelector('.add__btn');
@@ -18,12 +11,14 @@ function addTask() {
   const form = document.querySelector('.form');
   let value;
 
+  //очистка тайтла
   function clear() {
     textarea.value = '';
     form.style.display = 'none';
     btn.style.display = 'flex';
   }
 
+  //скрыть и раскрыть кнопки при нажатии на "+добавить"
   btn.addEventListener('click', () => {
     form.style.display = 'block';
     btn.style.display = 'none';
@@ -40,8 +35,10 @@ function addTask() {
     });
   });
 
+  //очистить инпут при отмене
   cancelBtn.addEventListener('click', clear);
 
+  //создание карточки
   addBtn.addEventListener('click', () => {
     const newItem = document.createElement('div');
     newItem.classList.add('list__item');
@@ -54,17 +51,23 @@ function addTask() {
 }
 addTask();
 
+//создание доски
 function addBoard() {
   const boards = document.querySelector('.boards');
   const board = document.createElement('div');
+
   board.classList.add('boards__item');
-  board.innerHTML = `<span contenteditable="true" class="title">
-                            Введите название</span>
-                    <div class="list"></div>`;
+  board.innerHTML = `<div class="header">
+  <span contenteditable="true" class="title">Введите название</span>
+  <div class="removeBtn">x</div>
+</div>`;
   boards.append(board);
+  const removeBtn = board.querySelector('.removeBtn');
+  removeBtn.addEventListener('click', () => {
+    board.remove();
+  });
   changeTitle();
   dragNdrop();
-  board.addEventListener('dblclick', () => board.remove());
 }
 button.addEventListener('click', addBoard);
 
@@ -74,8 +77,8 @@ function changeTitle() {
 }
 changeTitle();
 
-let draggedItem = null;
 function dragNdrop() {
+  let draggedItem = null;
   const listItems = document.querySelectorAll('.list__item');
   const lists = document.querySelectorAll('.list');
 
@@ -92,7 +95,7 @@ function dragNdrop() {
         draggedItem = null;
       }, 0);
     });
-    item.addEventListener('dblclick', () => {
+    item.addEventListener('dblclick', (e) => {
       item.remove();
     });
 
@@ -113,4 +116,13 @@ function dragNdrop() {
     }
   }
 }
-removeBoard();
+//Удаление доски
+function delet() {
+  const removeBtn = document.querySelector('.removeBtn');
+  const boardItem = removeBtn.closest('.boards__item');
+
+  removeBtn.addEventListener('click', () => {
+    boardItem.remove();
+  });
+}
+delet();

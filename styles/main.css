@@ -30,12 +30,26 @@
   padding: 10px;
   transition: 0.3s all ease;
 }
-.app .boards__item .title {
+.app .boards__item .header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+.app .boards__item .header .removeBtn {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  cursor: pointer;
+  color: red;
+}
+.app .boards__item .header .title {
   padding: 5px;
   font-size: 16px;
   color: white;
 }
-.app .boards__item .title:focus {
+.app .boards__item .header .title:focus {
   outline: 1px solid rgba(168, 168, 168, 0.45);
 }
 .app .boards__item .list {
